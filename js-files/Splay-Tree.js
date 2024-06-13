@@ -5,7 +5,7 @@ class SplayTree {
         this.x = x;
         this.y = y;
     }
-    
+ 
     addValue(value) {
         if (this.root.value === null) {
             this.root = this.root.insert(value);
@@ -21,21 +21,21 @@ class SplayTree {
         this.root.setSpacing(value);
         this.setCoordinates();
     }
-
+ 
     checkTree() {
         this.root.checkTree();
     }
-
+ 
     setCoordinates() {
         this.root.setCoordinates(this.x, this.y);
     }
-
+ 
     printTree(value) {
         this.root.printNode(1, value);
     }
-
+ 
     searchInTree(value) {
         return this.root.searchNode(value, 1);
     }
-
+ 
 } 
