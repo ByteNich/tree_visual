@@ -1,9 +1,9 @@
 class AVLNode {
-    
+ 
     static SIZE = 40;
     static HORIZONTALSPACING = 30;
     static VERTICALSPACING = 50;
-
+ 
     constructor(parent = null, value = null, size = AVLNode.SIZE) {
         this.left = null;
         this.right = null;
@@ -20,7 +20,7 @@ class AVLNode {
         this.colorBlue = color(8, 143, 143);
         this.colorGreen = color(34, 139, 34);
     }
-
+ 
     setSpacing() {
         if (this.left.value != null) {
             this.left.setSpacing();
@@ -52,9 +52,9 @@ class AVLNode {
                 this.rightSpacing = 0;
             }
         }
-
+ 
     }
-
+ 
     rotateRight() {
         let parent = this.parent;
         this.parent = this.left;
@@ -73,7 +73,7 @@ class AVLNode {
         this.height = Math.max(this.left.height, this.right.height) + 1;
         this.parent.height = Math.max(this.parent.left.height, this.parent.right.height) + 1;
     }
-
+ 
     rotateLeft() {
         let parent = this.parent;
         this.parent = this.right;
@@ -92,7 +92,7 @@ class AVLNode {
         this.height = Math.max(this.left.height, this.right.height) + 1;
         this.parent.height = Math.max(this.parent.left.height, this.parent.right.height) + 1;
     }
-
+ 
     insert(value) {
         if (this.value === null) {
             this.value = value;
@@ -106,11 +106,11 @@ class AVLNode {
         else if (value > this.value) {
             this.right = this.right.insert(value);
         } 
-
+ 
         this.height = Math.max(this.left.height, this.right.height) + 1;
-
+ 
         let balanceFactor = this.left.height - this.right.height;
-
+ 
         if (balanceFactor > 1) {
             if (value < this.left.value) {
                 this.rotateRight();
@@ -120,7 +120,7 @@ class AVLNode {
             }
             return this.parent;
         }
-
+ 
         if (balanceFactor < -1) {
             if (value > this.right.value) {
                 this.rotateLeft();
@@ -132,7 +132,7 @@ class AVLNode {
         }
         return this;
     }
-
+ 
     checkTree() {
         console.log(this);
         if (this.left.value) {
@@ -142,7 +142,7 @@ class AVLNode {
             this.right.checkTree();
         }
     }
-
+ 
     setCoordinates(x, y) {
         if (this.value !== null) {
             if (typeof x === "undefined" && typeof y === "undefined") {
@@ -162,7 +162,7 @@ class AVLNode {
             this.right.setCoordinates();
         }
     }
-
+ 
     drawNode(mode = 0) {
         if (this.left.value !== null) {
             line(this.x, this.y, this.left.x, this.left.y);
@@ -185,7 +185,7 @@ class AVLNode {
         textSize(this.size - 15);
         text(this.value,this.x,this.y+1);
     }
-
+ 
     printNode(mode, value = null) {
         if (((this.left.value === null) && (this.right.value === null) && (value !== null)) || (this.value == value)) {
             this.drawNode(2);
@@ -213,7 +213,7 @@ class AVLNode {
             }
         }
     }
-
+ 
     searchNode(value, mode) {
         if (value == this.value && mode == 1) {
             document.getElementById('notification').innerText = value + ' is already in Tree!';
@@ -238,5 +238,5 @@ class AVLNode {
             return this.right.searchNode(value, mode);
         }
     }
-
+ 
 }
