@@ -1,9 +1,9 @@
 class SplayNode {
-    
+ 
     static SIZE = 40;
     static HORIZONTALSPACING = 30;
     static VERTICALSPACING = 50;
-
+ 
     constructor(parent = null, value = null, size = SplayNode.SIZE) {
         this.left = null;
         this.right = null;
@@ -19,7 +19,7 @@ class SplayNode {
         this.colorBlue = color(8, 143, 143);
         this.colorGreen = color(34, 139, 34);
     }
-
+ 
     setSpacing() {
         if (this.left.value != null) {
             this.left.setSpacing();
@@ -51,9 +51,9 @@ class SplayNode {
                 this.rightSpacing = 0;
             }
         }
-
+ 
     }
-
+ 
     rotateRight() {
         let parent = this.parent;
         this.parent = this.left;
@@ -70,7 +70,7 @@ class SplayNode {
         this.parent.right = this;
         this.left.parent = this;
     }
-
+ 
     rotateLeft() {
         let parent = this.parent;
         this.parent = this.right;
@@ -87,7 +87,7 @@ class SplayNode {
         this.parent.left = this;
         this.right.parent = this;
     }
-
+ 
     insert(value) {
         if (this.value === null) {
             this.value = value;
@@ -102,7 +102,7 @@ class SplayNode {
             return this.right.insert(value);
         }
     }
-    
+ 
     splay(node) {
         while (node.parent) {
             if (!node.parent.parent) {
@@ -130,7 +130,7 @@ class SplayNode {
             }
         }
     }
-
+ 
     findElement(value) {
         let element = this;
         while (this.value !== value) {
@@ -143,7 +143,7 @@ class SplayNode {
         }
         return element;
     }
-
+ 
     checkTree() {
         console.log(this);
         if (this.left.value) {
@@ -153,7 +153,7 @@ class SplayNode {
             this.right.checkTree();
         }
     }
-
+ 
     setCoordinates(x, y) {
         if (this.value !== null) {
             if (typeof x === "undefined" && typeof y === "undefined") {
@@ -173,7 +173,7 @@ class SplayNode {
             this.right.setCoordinates();
         }
     }
-
+ 
     drawNode(mode = 0) {
         if (this.left.value !== null) {
             line(this.x, this.y, this.left.x, this.left.y);
@@ -196,7 +196,7 @@ class SplayNode {
         textSize(this.size - 15);
         text(this.value,this.x,this.y+1);
     }
-
+ 
     printNode(mode, value = null) {
         if (((this.left.value === null) && (this.right.value === null) && (value !== null)) || (this.value == value)) {
             this.drawNode(2);
@@ -224,7 +224,7 @@ class SplayNode {
             }
         }
     }
-
+ 
     searchNode(value, mode) {
         if (value == this.value && mode == 1) {
             document.getElementById('notification').innerText = value + ' is already in Tree!';
@@ -249,5 +249,5 @@ class SplayNode {
             return this.right.searchNode(value, mode);
         }
     }
-
+ 
 }
