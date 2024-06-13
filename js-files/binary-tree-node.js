@@ -1,9 +1,9 @@
 class Node {
-
+ 
     static SIZE = 40;
     static HORIZONTALSPACING = 30;
     static VERTICALSPACING = 50;
-
+ 
     constructor(parent = null, size = Node.SIZE) {
         this.left = null;
         this.right = null;
@@ -19,15 +19,15 @@ class Node {
         this.colorBlue = color(8, 143, 143);
         this.colorGreen = color(34, 139, 34);
     }
-
+ 
     wait(ms) {
         return new Promise(resolve => setTimeout(resolve, ms)); 
     }
-
+ 
     awaiting() {
         this.wait(5000);
     }
-
+ 
     addValue(value) {
         if (this.value === null) {
             this.value = value;
@@ -56,7 +56,7 @@ class Node {
             return shiftedNode;
         }
     }
-
+ 
     setCoordinates(x, y) {
         if (this.value !== null) {
             if (typeof x === "undefined" && typeof y === "undefined") {
@@ -76,7 +76,7 @@ class Node {
             this.right.setCoordinates();
         }
     }
-
+ 
     drawNode(mode = 0) {
         if (this.left.value !== null) {
             line(this.x, this.y, this.left.x, this.left.y);
@@ -99,7 +99,7 @@ class Node {
         textSize(this.size - 15);
         text(this.value,this.x,this.y+1);
     }
-
+ 
     printNode(mode, value = null) {
         if ((this.left.value === null) && (this.right.value === null) && (value !== null)) {
             this.drawNode(2);
@@ -127,7 +127,7 @@ class Node {
             }
         }
     }
-
+ 
     searchNode(value) {
         if (value == this.value) {
             document.getElementById('notification').innerText = value + ' is already in Tree!';
@@ -149,7 +149,7 @@ class Node {
             return this.right.searchNode(value);
         }
     }
-
+ 
     checkTree() {
         console.log(this);
         if (this.left) {
@@ -159,4 +159,5 @@ class Node {
             this.right.checkTree();
         }
     }
-}
+} 
+ 
